@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>War Room Expressions — English through Films</title>
+<style>
+  :root { --navy:#292C74; --navy-dark:#1d1f54; --gold:#EABD2C; --bg:#f5f5f8; --card:#fff; --border:#dcdce3; --text:#1a1a1a; --muted:#5f6370; --accent-bg:#f0effa; --warn:#b8860b; --danger:#c62828; }
+  * { box-sizing:border-box; }
+  [hidden]{ display:none !important; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.5; }
+  body.on, body.on * { -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; -webkit-user-drag:none; }
+  input[type=text], textarea { -webkit-user-select:text; user-select:text; }
+  .topbar { position:sticky; top:0; z-index:50; background:var(--navy); color:#fff; border-bottom:3px solid var(--gold); padding:10px 16px; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+  .topbar b { font-size:14px; } .topbar small { opacity:.8; font-size:12px; }
+  .wrap { max-width:860px; margin:0 auto; padding:22px 16px 140px; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:18px 20px; margin-bottom:16px; }
+  h1 { margin:0 0 4px; color:var(--navy); font-size:clamp(22px,4vw,28px); }
+  .sub { margin:0 0 14px; color:var(--muted); font-size:14px; }
+  h2.sec { margin:26px 0 4px; font-size:19px; color:var(--navy); border-bottom:3px solid var(--gold); padding-bottom:6px; }
+  p.dir { margin:6px 0 12px; font-size:13.5px; color:var(--muted); }
+  ul.rules { margin:0 0 12px; padding-left:20px; font-size:14px; } ul.rules li{ margin-bottom:5px; }
+  .fields { display:grid; grid-template-columns:1fr 1fr; gap:12px 14px; margin:12px 0; }
+  @media(max-width:560px){ .fields{ grid-template-columns:1fr; } }
+  label.l { font-size:12px; color:var(--muted); display:block; margin-bottom:4px; }
+  input[type=text], textarea, select { width:100%; padding:9px 11px; border:1px solid var(--border); border-radius:8px; font:inherit; font-size:14.5px; background:#fff; color:var(--text); }
+  textarea { min-height:92px; resize:vertical; line-height:1.45; }
+  textarea.sm { min-height:64px; }
+  .q { margin-bottom:16px; } .q .t { font-weight:600; font-size:14.5px; margin-bottom:6px; overflow-wrap:anywhere; } .q .t span{ color:#b08a00; margin-right:4px; }
+  .wc { font-size:11.5px; color:var(--muted); text-align:right; }
+  .cc { border:1px solid var(--border); border-radius:10px; padding:12px; margin-bottom:12px; background:#fcfcff; }
+  .cc h4 { margin:0 0 8px; font-size:13px; color:var(--navy); }
+  .seq { display:grid; grid-template-columns:78px 1fr; gap:8px 12px; align-items:center; margin-bottom:8px; font-size:14.5px; }
+  .ex { border:1px solid var(--border); border-radius:10px; padding:12px; margin-bottom:12px; }
+  .ex .e { font-weight:700; color:var(--navy); margin-bottom:6px; overflow-wrap:anywhere; } .ex .e span{ color:#b08a00; margin-right:6px; }
+  .types { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+  .types label { display:flex; gap:6px; align-items:center; padding:6px 10px; border:1px solid var(--border); border-radius:8px; font-size:13.5px; cursor:pointer; }
+  .types label.sel { background:var(--accent-bg); border-color:var(--navy); font-weight:700; }
+  .types input { accent-color:var(--navy); }
+  ol.steps { padding-left:0; list-style:none; margin:0; } ol.steps li{ display:flex; gap:12px; margin-bottom:8px; font-size:14.5px; }
+  ol.steps b { background:var(--navy); color:#fff; width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:13px; }
+  button { font:inherit; font-weight:600; font-size:14px; border-radius:9px; padding:11px 20px; cursor:pointer; border:none; }
+  .btn-primary{ background:var(--navy); color:#fff; } .btn-gold{ background:var(--gold); color:#1a1a1a; } .btn-ghost{ background:#fff; border:1px solid var(--border); }
+  button:disabled{ opacity:.5; cursor:not-allowed; }
+  .err{ color:var(--danger); font-size:13px; min-height:18px; margin-bottom:8px; }
+  .consent{ font-size:13.5px; display:flex; gap:8px; align-items:flex-start; margin:10px 0 14px; }
+  .toolbar { position:fixed; left:0; right:0; bottom:0; z-index:40; background:rgba(255,255,255,.97); border-top:1px solid var(--border); padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px)); }
+  .toolbar .in{ max-width:860px; margin:0 auto; display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+  .toolbar .prog{ font-size:13px; color:var(--muted); margin-right:auto; } .toolbar .tip{ width:100%; font-size:11.5px; color:var(--muted); }
+  .banner { background:#fff4e5; border:1px solid #f0c27b; border-left:5px solid var(--warn); padding:12px 16px; border-radius:8px; margin-bottom:14px; font-size:14px; color:#5a3d00; }
+  .banner.danger{ background:#fdecea; border-color:#f1a9a0; border-left-color:var(--danger); color:#7a1c14; }
+  .toast{ position:fixed; left:50%; bottom:96px; transform:translateX(-50%); background:#222; color:#fff; padding:10px 16px; border-radius:8px; font-size:13px; z-index:80; opacity:0; pointer-events:none; transition:opacity .2s; max-width:90vw; text-align:center; }
+  .toast.show{ opacity:1; }
+  .modal{ position:fixed; inset:0; z-index:100; background:rgba(0,0,0,.65); display:flex; align-items:center; justify-content:center; padding:20px; }
+  .modal .box{ background:#fff; border-radius:14px; max-width:460px; width:100%; padding:24px; border-top:6px solid var(--danger); text-align:center; }
+  .modal h3{ margin:0 0 8px; color:var(--danger); font-size:22px; } .modal p{ margin:0 0 18px; font-size:15px; }
+  body.locked textarea, body.locked input[type=text], body.locked select { background:#f1f1f4; pointer-events:none; }
+  body.locked .types label { pointer-events:none; }
+  .reset { font-size:11px; color:#9a9aa5; margin-top:16px; text-align:center; } .reset a{ color:#9a9aa5; }
+  .grp { margin:18px 0 6px; font-size:15.5px; font-weight:700; color:var(--navy); }
+  table.ref { width:100%; border-collapse:collapse; table-layout:fixed; background:#fff; margin-bottom:6px; }
+  table.ref th { background:var(--navy); color:#fff; text-align:left; font-size:13px; padding:7px 9px; }
+  table.ref td { border:1px solid var(--border); padding:7px 9px; font-size:13.5px; vertical-align:top; overflow-wrap:anywhere; }
+  table.ref td:first-child { font-weight:700; width:27%; } table.ref th:nth-child(2), table.ref td:nth-child(2){ width:33%; }
+  .refwrap { overflow-x:auto; }
+  .opt { padding:8px 11px; border:1px solid var(--border); border-radius:8px; background:var(--accent-bg); font-weight:700; color:var(--navy); font-size:13.5px; margin-bottom:12px; overflow-wrap:anywhere; }
+  .mrow { display:grid; grid-template-columns:90px 1fr 1.4fr; gap:8px 12px; align-items:center; margin-bottom:8px; font-size:14.5px; }
+  @media(max-width:560px){ .mrow{ grid-template-columns:70px 1fr; } .mrow .mm{ grid-column:1 / -1; } }
+  .pa, .print-only { display:none; }
+
+  @page { size:A4 portrait; margin:16mm 14mm; }
+  @media print {
+    * { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    html, body { width:auto !important; height:auto !important; overflow:visible !important; background:#fff !important; color:#000; }
+    body { font-size:10.5pt; }
+    .topbar, .toolbar, .toast, .banner, .start, .no-print, textarea, select, input[type=text].f, .wc, .modal, .reset { display:none !important; }
+    .print-only { display:block !important; }
+    .wrap { max-width:none !important; width:100% !important; margin:0 !important; padding:0 !important; }
+    #ws { display:block !important; }
+    .card { border:none; padding:0; margin:0; }
+    .ph { border-bottom:3px solid #EABD2C; padding-bottom:6px; margin-bottom:10px; }
+    .ph h1 { font-size:16pt; margin:0 0 2px; } .ph p{ margin:0 0 6px; font-size:10pt; color:#444; }
+    .ph table { width:100%; border-collapse:collapse; table-layout:fixed; font-size:10pt; }
+    .ph td { border:1px solid #bbb; padding:4px 8px; overflow-wrap:anywhere; } .ph td b{ color:#292C74; }
+    h2.sec { font-size:13pt; margin:14px 0 4px; break-after:avoid; page-break-after:avoid; }
+    p.dir { font-size:9.5pt; margin:2px 0 8px; }
+    .q, .cc, .ex, .seq { break-inside:avoid; page-break-inside:avoid; }
+    .q { margin-bottom:9px; } .q .t { font-size:10.5pt; margin-bottom:3px; }
+    .pa { display:block !important; border:1px solid #bbb; border-radius:4px; padding:5px 8px; min-height:34px; white-space:pre-wrap; overflow-wrap:anywhere; word-break:break-word; font-size:10.5pt; width:100%; }
+    .pa.one { min-height:22px; }
+    .cc { border:1px solid #bbb; padding:6px 8px; margin-bottom:8px; background:#fff; } .cc h4{ font-size:10.5pt; margin:0 0 4px; }
+    .cc .row { display:grid; grid-template-columns:1fr 1fr; gap:4px 8px; } .cc .row .q { margin:0; }
+    .seq { grid-template-columns:70px 1fr; gap:4px 10px; margin-bottom:4px; font-size:10.5pt; }
+    .ex { border:1px solid #bbb; padding:6px 8px; margin-bottom:8px; }
+    .types { gap:4px; } .types label { padding:2px 7px; font-size:9.5pt; border-color:#ddd; } .types input { display:none; }
+    .types label.sel { background:#e8e8f7 !important; border:1.5px solid #292C74; font-weight:700; }
+    .grp { font-size:11pt; margin:10px 0 3px; break-after:avoid; page-break-after:avoid; }
+    table.ref { font-size:9.5pt; margin-bottom:4px; } table.ref th { font-size:9.5pt; padding:3px 6px; } table.ref td { font-size:9.5pt; padding:3px 6px; }
+    table.ref tr { break-inside:avoid; page-break-inside:avoid; }
+    .refwrap { overflow:visible; }
+    .opt { font-size:9.5pt; padding:4px 8px; margin-bottom:6px; }
+    .mrow { grid-template-columns:80px 1fr 1.4fr; gap:3px 10px; margin-bottom:3px; font-size:10pt; break-inside:avoid; page-break-inside:avoid; }
+    .pbreak { break-before:page; page-break-before:always; }
+    ol.steps li { font-size:10pt; margin-bottom:4px; break-inside:avoid; }
+    ol.steps b { width:20px; height:20px; font-size:9pt; }
+  }
+</style>
+</head>
+<body>
+<div class="topbar no-print" id="topbar" hidden><div><b>War Room Expressions · English through Films</b><br><small id="who"></small></div><small id="saved">Draft saved on this device</small></div>
+
+<div class="wrap">
+  <section class="card start" id="startScreen">
+    <h1>War Room: 30 Common Expressions</h1>
+    <p class="sub">Week 12 · English through Films · Preparation for the Week 14 performance</p>
+    <ul class="rules">
+      <li>Part 1 is a reference list of 30 expressions from <em>War Room</em>. Read it and notice the expressions in your own scene.</li>
+      <li>Part 2 is a short practice: match, complete sentences and analyze two lines from your scene.</li>
+      <li>Your work is saved automatically on this device. Refreshing the page does not erase it.</li>
+      <li>Copy, cut, paste, text selection, right-click and drag-and-drop are disabled.</li>
+      <li>When you finish, press <b>Save as PDF</b> and save the file. Then upload the PDF where your lecturer tells you.</li>
+      <li>Write in your own words. Do not use AI tools or translation tools for Part 2.</li>
+    </ul>
+    <div class="fields">
+      <div><label class="l" for="inName">Full name</label><input type="text" id="inName" autocomplete="off" placeholder="Your full name"></div>
+      <div><label class="l" for="inNim">NIM</label><input type="text" id="inNim" autocomplete="off" placeholder="Student ID"></div>
+    </div>
+    <label class="consent"><input type="checkbox" id="inOk"><span>I have read the rules above.</span></label>
+    <div class="err" id="startErr"></div>
+    <button class="btn-primary" id="startBtn" type="button">Start Worksheet</button>
+  </section>
+
+  <main id="ws" hidden>
+    <div class="print-only ph" id="printHead">
+      <h1>WAR ROOM: 30 COMMON EXPRESSIONS</h1>
+      <p>Jakarta International University · English through Films · Week 12</p>
+      <table>
+        <tr><td><b>Name:</b> <span id="phName"></span></td><td><b>NIM:</b> <span id="phNim"></span></td></tr>
+        <tr><td><b>Partner:</b> <span id="phPartner"></span></td><td><b>Date saved:</b> <span id="phDate"></span></td></tr>
+        <tr><td colspan="2"><b>Course:</b> English through Films · War Room</td></tr>
+      </table>
+    </div>
+
+    <div class="card no-print"><div class="fields" style="margin:0"><div><label class="l" for="partner">Partner’s name (optional)</label><input type="text" class="f" id="partner" data-id="partner" autocomplete="off"></div></div></div>
+    <div id="body"></div>
+  </main>
+</div>
+
+<div class="toolbar no-print" id="toolbar" hidden><div class="in">
+  <span class="prog" id="prog"></span>
+  <button class="btn-ghost" id="pdfBtn" type="button">Save as PDF</button>
+  <div class="tip">Save as PDF: in the print window choose Destination → “Save as PDF”, paper A4, and turn “Headers and footers” off.</div>
+</div></div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function () {
+  "use strict";
+  var KEY = "warroom_week12_expr_v1";
+
+  var G = [
+   ["1. Starting and Managing a Conversation",[
+    ["Can we talk?","I want to have a serious conversation.","“Can we talk? It’s important.”"],
+    ["Let me get this straight.","I want to check that I understand correctly (often when surprised).","“Let me get this straight. You forgot the tickets?”"],
+    ["What do you mean?","Please explain, because I do not understand.","“What do you mean you’re not coming?”"],
+    ["Look, tell you what.","Used to make an offer or suggestion.","“Look, tell you what. I’ll cook and you wash up.”"],
+    ["Believe me.","I am being honest; trust what I say.","“Believe me, I’m nervous too.”"],
+    ["I’ll be right back.","I will return very soon.","“I need a minute. I’ll be right back.”"]]],
+   ["2. Agreeing and Reacting",[
+    ["Point taken.","I understand and accept what you said.","“You’re right, I should have called.” “Point taken.”"],
+    ["You got that right.","I completely agree.","“This test was hard!” “You got that right!”"],
+    ["You got to be kidding me.","I cannot believe it (surprise or annoyance).","“He’s the new manager? You got to be kidding me.”"],
+    ["Sounds good.","I agree with the plan.","“Let’s meet at six.” “Sounds good.”"],
+    ["No way.","I refuse, or I cannot believe it.","“Rub my feet?” “No way!”"],
+    ["Are you serious?","Is that really true?","“We won first prize.” “Are you serious?”"]]],
+   ["3. Everyday Spoken English",[
+    ["I got this.","I can handle it, so do not worry.","“Don’t worry about the bill. I got this.”"],
+    ["Just roll with it.","Accept the situation and go along with it.","“The plan changed again, so just roll with it.”"],
+    ["Give me a hand.","Help me.","“Can you give me a hand with these boxes?”"],
+    ["Knock out some chores.","Finish some small jobs quickly.","“Let’s knock out some chores before lunch.”"],
+    ["Don’t be mad.","Please do not be angry with me.","“Don’t be mad, I only borrowed it.”"],
+    ["You ain’t seen nothing yet.","The best part is still to come (informal).","“That was great!” “You ain’t seen nothing yet.”"]]],
+   ["4. Idioms and Figurative Language",[
+    ["hit the ceiling","become extremely angry","“Dad will hit the ceiling when he sees this.”"],
+    ["on the back burner","treated as less important than something else","“His family was pushed to the back burner.”"],
+    ["walk all over (someone)","treat someone badly without respect","“Don’t let them walk all over you.”"],
+    ["take off the gloves","stop holding back and fight seriously","“It’s time to take off the gloves.”"],
+    ["step on the same land mines","make the same dangerous mistakes","“Learn from me so you don’t step on the same land mines.”"],
+    ["blow them away","impress people very much","“Let’s blow them away on stage.”"]]],
+   ["5. Feelings, Relationships and Consequences",[
+    ["I’m not done with us.","I have not given up on our relationship.","“I’m not done with us. I’m staying.”"],
+    ["get right with (someone)","fix a relationship or make things right","“I need to get right with my family.”"],
+    ["make it right","fix a mistake or do the right thing","“I broke it, and I want to make it right.”"],
+    ["Life goes on.","Things continue even after a problem.","“We lost, but life goes on.”"],
+    ["get so worked up","become very upset about something","“Sorry for getting so worked up.”"],
+    ["You’re meddling.","You are getting involved in my private business.","“Mom, you’re meddling again.”"]]]];
+  var M8 = ["Point taken.","hit the ceiling","on the back burner","take off the gloves","I got this.","Let me get this straight.","get so worked up","Life goes on."];
+  var MEAN = ["A. become very upset about something","B. I understand and accept your point","C. I want to check that I understand","D. treated as less important","E. I can handle it","F. things continue after a problem","G. become extremely angry","H. stop holding back and fight seriously"];
+  var FILL = ["A: “This food is delicious!” B: “______!”","Could you ______ with these boxes?","______, I’m just as nervous as you are.","I made a mistake, and I want to ______.","Be kind, but don’t let people ______ you.","______? There is something I need to tell you."];
+  var BOX = "You got that right  |  give me a hand  |  Believe me  |  make it right  |  walk all over  |  Can we talk";
+
+  var state = { name:"", nim:"", start:0, f:{} };
+  var toastT=null, saveT=null;
+  var IDS = [];
+  function $(id){ return document.getElementById(id); }
+  function load(){ try{ var r=localStorage.getItem(KEY); if(r){ var o=JSON.parse(r); if(o&&typeof o==="object") state=Object.assign(state,o); } }catch(e){} }
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
+  function toast(m){ var t=$("toast"); t.textContent=m; t.classList.add("show"); if(toastT)clearTimeout(toastT); toastT=setTimeout(function(){t.classList.remove("show");},2400); }
+  function el(tag,cls,txt){ var e=document.createElement(tag); if(cls)e.className=cls; if(txt!==undefined)e.textContent=txt; return e; }
+
+  function mkText(id, cls, ph){
+    var wrap=el("div"); var ta=el("textarea", "f "+(cls||"")); ta.setAttribute("data-id",id); ta.setAttribute("autocomplete","off"); ta.setAttribute("spellcheck","false"); if(ph)ta.placeholder=ph;
+    var pa=el("div","pa"); pa.setAttribute("data-mirror",id);
+    wrap.appendChild(ta); wrap.appendChild(pa); IDS.push(id); return wrap;
+  }
+  function mkLine(id, ph){
+    var wrap=el("div"); var i=el("input","f"); i.type="text"; i.setAttribute("data-id",id); i.setAttribute("autocomplete","off"); if(ph)i.placeholder=ph;
+    var pa=el("div","pa one"); pa.setAttribute("data-mirror",id); wrap.appendChild(i); wrap.appendChild(pa); IDS.push(id); return wrap;
+  }
+  function sec(title, dir){ var b=$("body"); b.appendChild(el("h2","sec",title)); if(dir) b.appendChild(el("p","dir",dir)); return b; }
+
+  function build(){
+    var b=$("body"); b.innerHTML=""; IDS=[];
+    sec("Part 1. Expression Reference List","Read the list. Notice which expressions appear in your own scene.");
+    G.forEach(function(g){
+      b.appendChild(el("div","grp",g[0]));
+      var w=el("div","refwrap"); var t=el("table","ref"); var h=el("tr"); ["Expression","Meaning","Example"].forEach(function(x){ h.appendChild(el("th","",x)); }); t.appendChild(h);
+      g[1].forEach(function(x){ var tr=el("tr"); x.forEach(function(c){ tr.appendChild(el("td","",c)); }); t.appendChild(tr); });
+      w.appendChild(t); b.appendChild(w);
+    });
+    var h2=el("h2","sec pbreak","Part 2. Practice"); b.appendChild(h2);
+    b.appendChild(el("p","dir","A. Match: choose the letter of the correct meaning for each expression."));
+    var ca=el("div","card");
+    M8.forEach(function(m,i){
+      var row=el("div","mrow"); var sel=el("select","f"); sel.setAttribute("data-id","ma"+i);
+      var o0=el("option","","—"); o0.value=""; sel.appendChild(o0); "ABCDEFGH".split("").forEach(function(L){ var o=el("option","",L); o.value=L; sel.appendChild(o); }); IDS.push("ma"+i);
+      var left=el("div"); left.appendChild(sel); var pm=el("div","pa one"); pm.setAttribute("data-mirror","ma"+i); left.appendChild(pm);
+      row.appendChild(left); row.appendChild(el("div","",(i+1)+". "+m)); var mm=el("div","mm"); row.appendChild(mm); ca.appendChild(row);
+    });
+    var key=el("div","opt","Meanings: A) become very upset  B) accept your point  C) check that I understand  D) treated as less important  E) I can handle it  F) things continue after a problem  G) become extremely angry  H) stop holding back and fight seriously");
+    b.appendChild(key); b.appendChild(ca);
+    b.appendChild(el("p","dir","B. Use it in context: complete each sentence with an expression from the box."));
+    b.appendChild(el("div","opt",BOX));
+    FILL.forEach(function(f,i){ var q=el("div","q card"); var t=el("div","t"); t.appendChild(el("span","",(i+1)+".")); t.appendChild(document.createTextNode(f)); q.appendChild(t); q.appendChild(mkLine("fb"+i,"Write the expression")); b.appendChild(q); });
+    b.appendChild(el("p","dir pbreak","C. Your scene: choose TWO lines or expressions from your own scene."));
+    [1,2].forEach(function(n){
+      var c=el("div","cc"); c.appendChild(el("h4","","Line "+n));
+      [["l","Line or expression"],["m","What it means"],["f","How the character feels"],["d","How I will say it (voice, face, gesture)"]].forEach(function(r){
+        var q=el("div","q"); q.style.marginTop="8px"; q.appendChild(el("div","t",r[1])); q.appendChild(mkText("c"+n+r[0],"sm")); c.appendChild(q);
+      }); b.appendChild(c);
+    });
+    b.appendChild(el("p","dir","Now say both lines aloud twice with your partner. Try different tones and choose the one that fits the scene best."));
+    IDS.push("partner");
+    bind();
+  }
+
+  function words(s){ s=(s||"").trim(); return s?s.split(/\s+/).length:0; }
+  function setVal(id,v){
+    var e=document.querySelector('[data-id="'+id+'"]'); if(e) e.value=v||"";
+    var rs=document.querySelectorAll('[data-radio="'+id+'"]'); for(var i=0;i<rs.length;i++){ rs[i].checked=(String(v)===rs[i].value); rs[i].parentNode.classList.toggle("sel",rs[i].checked); }
+  }
+  function mirrorAll(){
+    var ms=document.querySelectorAll("[data-mirror]");
+    for(var i=0;i<ms.length;i++){ var id=ms[i].getAttribute("data-mirror"); ms[i].textContent=(state.f[id]||"")||" "; }
+    var wc=document.querySelectorAll("[data-wc]"); for(var j=0;j<wc.length;j++){ var k=wc[j].getAttribute("data-wc"); wc[j].textContent=words(state.f[k])+" words"; }
+    var done=0,total=0; IDS.forEach(function(id){ if(id==="partner")return; total++; if((state.f[id]||"").toString().trim()) done++; });
+    $("prog").textContent=done+" / "+total+" fields completed";
+  }
+  function onChange(id,v){
+    state.f[id]=v;
+    mirrorAll();
+    if(saveT) clearTimeout(saveT); saveT=setTimeout(function(){ save(); $("saved").textContent="Draft saved on this device"; },250);
+  }
+  function bind(){
+    var fs=document.querySelectorAll("[data-id]");
+    for(var i=0;i<fs.length;i++){ (function(e){ var id=e.getAttribute("data-id"); var ev=(e.tagName==="SELECT")?"change":"input"; e.addEventListener(ev,function(){ onChange(id,e.value); }); })(fs[i]); }
+    var rs=document.querySelectorAll("[data-radio]");
+    for(var j=0;j<rs.length;j++){ (function(r){ r.addEventListener("change",function(){ var id=r.getAttribute("data-radio"); onChange(id,r.value); var sib=document.querySelectorAll('[data-radio="'+id+'"]'); for(var k=0;k<sib.length;k++) sib[k].parentNode.classList.toggle("sel",sib[k].checked); }); })(rs[j]); }
+  }
+  function restore(){ IDS.forEach(function(id){ if(state.f[id]!==undefined) setVal(id,state.f[id]); }); mirrorAll(); }
+
+  function showWs(){
+    $("startScreen").hidden=true; $("ws").hidden=false; $("topbar").hidden=false; $("toolbar").hidden=false;
+    document.body.classList.add("on");
+    $("who").textContent=state.name+" · "+state.nim;
+    build(); restore();
+  }
+
+  function dt(ms){ try{ return new Date(ms).toLocaleString(); }catch(e){ return ""; } }
+  function syncPrint(){
+    $("phName").textContent=state.name; $("phNim").textContent=state.nim; $("phPartner").textContent=state.f.partner||"—";
+    $("phDate").textContent=dt(Date.now());
+    mirrorAll();
+  }
+  function doPrint(){ syncPrint(); setTimeout(function(){ window.print(); },60); }
+  window.addEventListener("beforeprint",syncPrint);
+
+  function isField(t){ var e=t&&t.nodeType===1?t:(t&&t.parentElement); return !!(e&&e.closest&&e.closest("input[type='text'],textarea")); }
+  ["copy","cut","paste"].forEach(function(ev){ document.addEventListener(ev,function(e){ e.preventDefault(); toast("Copy / cut / paste is disabled."); }); });
+  ["dragstart","drag","dragenter","dragover","drop"].forEach(function(ev){ document.addEventListener(ev,function(e){ e.preventDefault(); if(ev==="drop") toast("Drag-and-drop is disabled."); }); });
+  document.addEventListener("contextmenu",function(e){ e.preventDefault(); toast("Right-click is disabled."); });
+  document.addEventListener("selectstart",function(e){ if(!isField(e.target)) e.preventDefault(); });
+  document.addEventListener("keydown",function(e){ if((e.ctrlKey||e.metaKey)&&!e.altKey){ var k=(e.key||"").toLowerCase(); if(k==="c"||k==="x"||k==="v"||k==="a"){ e.preventDefault(); toast("Keyboard copy / paste / select-all is disabled."); } } });
+
+
+  $("startBtn").addEventListener("click",function(){
+    var name=$("inName").value.trim(), nim=$("inNim").value.trim();
+    if(name.length<2||nim.length<3){ $("startErr").textContent="Please enter your full name and NIM."; return; }
+    if(!$("inOk").checked){ $("startErr").textContent="Please tick the box to confirm you have read the rules."; return; }
+    state={ name:name, nim:nim, start:Date.now(), f:{} };
+    save(); showWs(); window.scrollTo(0,0);
+  });
+  $("pdfBtn").addEventListener("click",doPrint);
+  load();
+  if(state.start) showWs();
+})();
+</script>
+</body>
+</html>
